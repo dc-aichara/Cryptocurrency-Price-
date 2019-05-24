@@ -1,8 +1,6 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-import datetime as dt
-import numpy as np
 from time import sleep
 from user_agent import generate_user_agent
 
@@ -14,9 +12,13 @@ proxies = {'http' : 'http://10.10.0.0:0000',
           'https': 'http://120.10.0.0:0000'}
 
 url = 'https://coinmarketcap.com/currencies/'
+
+dates ='/historical-data/?start=20130428&end=20190524'
+
 cryptos = ['bitcoin','ethereum','ripple', 'eos', 'litecoin', 'bitcoin-cash', 'tether', 'stellar', 'tron', 'binance-coin','cardano','bitcoin-sv',\
             'monero', 'iota','dash', 'maker']  # , 'neo', 'ethereum-classic','nem', 'zcash'  ,'ontology', 'waves', 'tezos', 'vechain', 'usd-coin']
-dates ='/historical-data/?start=20130428&end=20190524'
+
+
 
 crypto_price =pd.DataFrame()
 
@@ -52,3 +54,4 @@ crypto_price.index = crypto_price['date']
 crypto_price = crypto_price.sort_index()
 crypto_price = crypto_price.drop(['date'],axis=1)
 print('Job is done')
+
